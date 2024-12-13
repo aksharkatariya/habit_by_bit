@@ -1,18 +1,119 @@
-<form action="/add_update" method = "post">
-  <div>
-    <label for="task1">How long did you exercise today (minutes)?</label>
-    <input id="task1" type="text" name="task1_param">
-  </div>
-
-  <div>
-    <label for="task2">How long did you Read today (minutes)?</label>
-    <input id="task2" type="text" name="task2_param">
-  </div>
-
-    <div>
-    <label for="motivation_entry">What about today motivated you?</label>
-    <input id="motivation_entry" type="text" name="motivation_param">
-  </div>
-  <button> Submit </button>
-</form>
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HabitByBit Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      body {
+      font-family: 'Raleway', sans-serif;
+      background-color: #dfbf60;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      height: 80vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+      }
+      .header-ribbon {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #110d13;
+      color: #dfbf60;
+      text-align: left;
+      padding: 15px 15px;
+      font-size: 44px;
+      font-weight: 650;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      }
+      .header-logo {
+      margin-right: 15px;
+      }
+      .header-log {
+      background-color: #dfbf60;
+      color: black;
+      padding: 5px 10px;
+      font-size: 22px;
+      font-weight: 600;
+      border-radius: 4px;
+      }
+      .habit-form {
+      background-color: #dfbf60;
+      border-radius: 10px;
+      padding: 40px;
+      width: 100%;
+      max-width: 500px;
+      margin-top: 80px;
+      }
+      .form-group {
+      margin-bottom: 20px;
+      }
+      .form-group label {
+      display: block;
+      margin-bottom: 4px;
+      color: #333;
+      font-weight: 600;
+      }
+      .form-group input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 2px;
+      font-family: 'Raleway', sans-serif;
+      transition: border-color 0.3s ease;
+      }
+      .form-group input:focus {
+      outline: none;
+      border-color: #dfbf60;
+      box-shadow: 0 0 0 2px rgba(223, 191, 96, 0.2);
+      }
+      .submit-btn {
+      width: 32%;
+      padding: 15px;
+      background-color: #110d13;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+      text-align: left;
+      }
+      .submit-btn:hover {
+      background-color: #24353d;
+      }
+      .submit-btn:active {
+      transform: scale(0.98);
+      }
+      </style>
+</head>
+    <body>
+    <div class="header-ribbon">
+      <div class="header-logo">HabitByBit</div>
+      <div class="header-log">LOG</div>
+    </div>
+      <form class="habit-form" action="/add_update" method="post">
+      <div class="form-group">
+        <label for="task1">How long did you exercise today (minutes)?</label>
+        <input id="task1" type="text" name="task1_param" placeholder="Enter exercise duration">
+      </div>
+      <div class="form-group">
+        <label for="task2">How long did you Read today (minutes)?</label>
+        <input id="task2" type="text" name="task2_param" placeholder="Enter reading duration">
+      </div>
+      <div class="form-group">
+        <label for="motivation_entry">What about today motivated you?</label>
+        <input id="motivation_entry" type="text" name="motivation_param" placeholder="Share your motivation">
+      </div>
+        <button type="submit" class="submit-btn">Track My Habits</button>
+      </form>
+    </body>
+</html>

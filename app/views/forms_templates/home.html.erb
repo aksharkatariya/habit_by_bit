@@ -1,87 +1,156 @@
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <style>
+      body {
+        font-family: 'Raleway', sans-serif;
+        background-color: #dfbf60;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .header-ribbon {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #110d13;
+        color: #dfbf60;
+        text-align: left;
+        padding: 15px 15px;
+        font-size: 44px;
+        font-weight: 650;
+        letter-spacing: 2px;
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+        margin-top: 10px;
+      }
+      .header-logo {
+        margin-right: 15px;
+      }
+      .header-log {
+      background-color: #dfbf60;
+      color: black;
+      padding: 5px 10px;
+      font-size: 22px;
+      font-weight: 600;
+      border-radius: 4px;
+      }
+      .content {
+        margin-top: 100px;
+        width: 100%;
+        max-width: 1200px;
+      }
+      h1 {
+        color: #110d13;
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      a {
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        color: #110d13;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        color: #110d13;
+      }
+      li {
+        font-size: 18px;
+        margin: 5px 0;
+      }
+      .chart-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      #reading_calendar, #calendar_basic {
+        width: 100%;
+        max-width: 1000px;
+        height: 350px;
+        border: 2px solid #110d13;
+        border-radius: 8px;
+        background-color: white;
+      }
+    </style>
     <script type="text/javascript">
-  google.charts.load('current', {'packages':['corechart', 'calendar']});
-  google.charts.setOnLoadCallback(() => {
-      drawChart();
-      drawExerciseChart();
-      drawLineChart();
-  });
+          google.charts.load('current', {'packages':['corechart', 'calendar']});
+          google.charts.setOnLoadCallback(() => {
+              drawChart();
+              drawExerciseChart();
+              drawLineChart();
+          });
 
-  function drawChart() {
-      var dataTable = new google.visualization.DataTable();
-      dataTable.addColumn({ type: 'date', id: 'Date' });
-      dataTable.addColumn({ type: 'number', id: '' });
-      dataTable.addRows([
-        <% @habit.each do |task| %>
-          [new Date(<%= task.created_at.year.to_f %>, <%= task.created_at.month.to_f - 1 %>, <%= task.created_at.day.to_f - 1 %>), <%=task.Habit1Minutes.to_f %> ],
-        <% end %>
-      ]);
+          function drawChart() {
+              var dataTable = new google.visualization.DataTable();
+              dataTable.addColumn({ type: 'date', id: 'Date' });
+              dataTable.addColumn({ type: 'number', id: '' });
+              dataTable.addRows([
+                <% @habit.each do |task| %>
+                  [new Date(<%= task.created_at.year.to_f %>, <%= task.created_at.month.to_f - 1 %>, <%= task.created_at.day.to_f - 1 %>), <%=task.Habit1Minutes.to_f %> ],
+                <% end %>
+              ]);
 
-      var chart = new google.visualization.Calendar(document.getElementById('reading_calendar'));
+              var chart = new google.visualization.Calendar(document.getElementById('reading_calendar'));
 
-      var options = {
-          title: "Reading Progress",
-          height: 350,
-      };
+              var options = {
+                  title: "Reading Progress",
+                  height: 350,
+              };
 
-      chart.draw(dataTable, options);
-  }
+              chart.draw(dataTable, options);
+          }
 
-function drawExerciseChart() {var dataTable = new google.visualization.DataTable();
-      dataTable.addColumn({ type: 'date', id: 'Date' });
-      dataTable.addColumn({ type: 'number', id: '' });
-      dataTable.addRows([
-        <% @habit.each do |task| %>
-          [new Date(<%= task.created_at.year.to_f %>, <%= task.created_at.month.to_f - 1 %>, <%= task.created_at.day.to_f - 1 %>), <%=task.Habit1Minutes.to_f %> ],
-        <% end %>
-      ]);
+        function drawExerciseChart() {var dataTable = new google.visualization.DataTable();
+              dataTable.addColumn({ type: 'date', id: 'Date' });
+              dataTable.addColumn({ type: 'number', id: '' });
+              dataTable.addRows([
+                <% @habit.each do |task| %>
+                  [new Date(<%= task.created_at.year.to_f %>, <%= task.created_at.month.to_f - 1 %>, <%= task.created_at.day.to_f - 1 %>), <%=task.Habit1Minutes.to_f %> ],
+                <% end %>
+              ]);
 
-      var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+              var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
 
-      var options = {
-          title: "Exercise Progress",
-          height: 350,
-      };
+              var options = {
+                  title: "Exercise Progress",
+                  height: 350,
+              };
 
-      chart.draw(dataTable, options);
-}
+              chart.draw(dataTable, options);
+        }
 
-  function drawLineChart() {
-      var data = google.visualization.arrayToDataTable([
-          ['Datetime', 'Exercise'],
-          <% @habit.each do |task| %>
-          ['<%= task.created_at.strftime("%d of %B, %Y") %>', <%=task.Habit1Minutes.to_f %>],
-          <% end %>
-      ]);
+        </script>
+        </head>
 
-      var options = {
-          title: 'Minutes of Task',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-      };
+          <body>
+              <div class="header-ribbon">
+                <div class="header-logo">HabitByBit</div>
+                <div class="header-log">PROGRESS</div>
+              </div>
+              <a href="/backdoor">Enter Tasks</a>
+              <div class="charts">
+                <div id="reading_calendar" style="width: 1000px; height: 220px;"></div>
+                <div id="calendar_basic" style="width: 1000px; height: 220px;"></div>
+              </div>
 
-      var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-      chart.draw(data, options);
-  }
-</script>
-
-  </head>
-
-  <body>
-  
-    <h1>Task Completion Summary </h1>
-    <a href="/backdoor">Enter Tasks</a>
-    <ul>
-    <% @habit.each do |task| %>
-      <li> <%=task.created_at.strftime("%d of %B, %Y") %>: <%= task.Habit1Minutes.to_f %> </li>
-    <%end%>
-    </ul>
-
-    <div id="reading_calendar" style="width: 1000px; height: 350px;"></div>
-    <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
-    <div id="curve_chart" style="width: 500px; height: 500px"></div>
-
-  </body>
+          </body>
 
   
