@@ -1,7 +1,6 @@
 task({ :reminder_text => :environment }) do
 sinch_plan_id = ENV.fetch("SINCH_PLAN_ID")
 sinch_api_token = ENV.fetch("SINCH_API_TOKEN")
-message = params.fetch("motivation_param")
 
 url = "https://sms.api.sinch.com/xms/v1/#{sinch_plan_id}/batches"
 
