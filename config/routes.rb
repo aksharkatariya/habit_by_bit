@@ -1,6 +1,7 @@
-Rails.application.routes.draw do
+
 
   Rails.application.routes.draw do
+  devise_for :users
     get("/backdoor", { :controller => "forms", :action => "add_form" })
     root to: "forms#index"
     # get("/", { :controller => "forms", :action => "index" })
@@ -15,4 +16,4 @@ Rails.application.routes.draw do
   # rails generate model Habitlog Habit1Minutes:binary Habit2Minutes:binary Motivation:text
   # rails db:migrate
   
-end
+# rails generate migration AddUserIdToHabitlogs user_id:integer
