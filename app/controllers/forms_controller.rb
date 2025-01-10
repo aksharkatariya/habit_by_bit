@@ -14,6 +14,7 @@ class FormsController < ApplicationController
     h.Habit1Minutes = params.fetch("task1_param")
     h.Habit2Minutes = params.fetch("task2_param")
     h.Motivation = params.fetch("motivation_param")
+    h.user_id = current_user.id
     h.save
     redirect_to("/")
   end
