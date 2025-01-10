@@ -1,7 +1,6 @@
 class FormsController < ApplicationController
   def index
-    @habit = current_user.Habitlog.all
-    
+    @habit = current_user.habitlogs
     render({ :template => "forms_templates/home" })
   end
 

@@ -11,4 +11,5 @@
 #  user_id       :integer
 #
 class Habitlog < ApplicationRecord
+  belongs_to :user
 end
