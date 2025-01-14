@@ -14,12 +14,12 @@
     </div>
       <form class="habit-form" action="/add_update" method="post">
       <div class="form-group">
-        <label for="task1">How long did you exercise today (minutes)?</label>
-        <input id="task1" type="text" name="task1_param" placeholder="Enter exercise duration">
+        <label for="task1"><%= current_user.habit_one %></label>
+        <input id="task1" type="text" name="task1_param" placeholder="Enter number">
       </div>
       <div class="form-group">
-        <label for="task2">How long did you Read today (minutes)?</label>
-        <input id="task2" type="text" name="task2_param" placeholder="Enter reading duration">
+        <label for="task2"><%= current_user.habit_two %></label>
+        <input id="task2" type="text" name="task2_param" placeholder="Enter number">
       </div>
       <div class="form-group">
         <label for="motivation_entry">Write a message to motivate yourself tomorrow</label>

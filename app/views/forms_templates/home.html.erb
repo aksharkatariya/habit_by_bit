@@ -26,7 +26,7 @@
               var chart = new google.visualization.Calendar(document.getElementById('reading_calendar'));
 
               var options = {
-                  title: "Reading Progress",
+                  title: "<%= @current_user.habit_one %>",
                   height: 220,
               };
 
@@ -45,7 +45,7 @@
               var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
 
               var options = {
-                  title: "Exercise Progress",
+                  title: "<%= @current_user.habit_two %>",
                   height: 220,
               };
 
